@@ -20,5 +20,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg[green]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
-PROMPT="${user} ${pwd} $ "
+if [[ $(id -u) -eq 0 ]]; then
+	PROMPT="${user} ${pwd} %{$fg[red]%}#%{$reset_color%} "
+else
+	PROMPT="${user} ${pwd} $ "
+fi
 RPROMPT="${return_code} ${git_branch} \$(ruby_prompt_info)"
